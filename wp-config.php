@@ -15,7 +15,8 @@ define('DB_USER', 'wp_6mo9h');
 define('DB_PASSWORD', 'JGWowD6RfSgBvOdbh0c0G2F');
 
 /** MySQL hostname */
-define('DB_HOST', 'localhost:/var/run/mysqld/mysqld.sock');
+#define('DB_HOST', 'localhost:/var/run/mysqld/mysqld.sock');
+define('DB_HOST', 'localhost');
 
 /** Database Charset to use in creating database tables. */
 define('DB_CHARSET', 'utf8');
