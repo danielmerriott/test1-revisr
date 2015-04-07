@@ -166,7 +166,7 @@ class WP_Widget {
 
 	/**
 	 * PHP4 constructor
-	 * 
+	 *
 	 * @param string $id_base
 	 * @param string $name
 	 * @param array  $widget_options
@@ -802,6 +802,11 @@ function register_sidebar($args = array()) {
 	global $wp_registered_sidebars;
 
 	$i = count($wp_registered_sidebars) + 1;
+
+	if ( empty( $args['id'] ) ) {
+		/* translators: %s: the id argument */
+		_doing_it_wrong( __FUNCTION__, sprintf( __( 'You should set %s in the arguments array.' ), '<code>id</code>' ), '4.2.0' );
+	}
 
 	$defaults = array(
 		'name' => sprintf(__('Sidebar %d'), $i ),
@@ -1552,8 +1557,9 @@ function the_widget( $widget, $instance = array(), $args = array() ) {
 	global $wp_widget_factory;
 
 	$widget_obj = $wp_widget_factory->widgets[$widget];
-	if ( !is_a($widget_obj, 'WP_Widget') )
+	if ( ! ( $widget_obj instanceof WP_Widget ) ) {
 		return;
+	}
 
 	$before_widget = sprintf('<div class="widget %s">', $widget_obj->widget_options['classname'] );
 	$default_args = array( 'before_widget' => $before_widget, 'after_widget' => "</div>", 'before_title' => '<h2 class="widgettitle">', 'after_title' => '</h2>' );

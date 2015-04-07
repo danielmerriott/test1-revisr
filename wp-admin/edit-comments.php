@@ -109,7 +109,7 @@ if ( $post_id )
 else
 	$title = __('Comments');
 
-add_screen_option( 'per_page', array('label' => _x( 'Comments', 'comments per page (screen options)' )) );
+add_screen_option( 'per_page' );
 
 get_current_screen()->add_help_tab( array(
 'id'		=> 'overview',
@@ -217,14 +217,14 @@ if ( isset($_REQUEST['approved']) || isset($_REQUEST['deleted']) || isset($_REQU
 			}
 		}
 
-		echo '<div id="moderated" class="updated"><p>' . implode( "<br/>\n", $messages ) . '</p></div>';
+		echo '<div id="moderated" class="updated notice is-dismissible"><p>' . implode( "<br/>\n", $messages ) . '</p></div>';
 	}
 }
 ?>
 
 <?php $wp_list_table->views(); ?>
 
-<form id="comments-form" action="" method="get">
+<form id="comments-form" method="get">
 
 <?php $wp_list_table->search_box( __( 'Search Comments' ), 'comment' ); ?>
 
